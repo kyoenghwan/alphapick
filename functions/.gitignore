@@ -1,0 +1,8 @@
+node_modules/
+lib/
+*.log
+.env
+.env.local
+page-source.html
+page-screenshot.png
+serviceAccountKey.json

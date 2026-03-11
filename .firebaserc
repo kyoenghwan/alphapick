@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "alphapick-a9b9e"
+  },
+  "targets": {
+    "alphapick-a9b9e": {
+      "hosting": {
+        "nextjs-app": [
+          "alphapick"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

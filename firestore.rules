@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Games rules: Allow read/write for all game data structures
+    match /games/{gameId}/{document=**} {
+      allow read, write: if true; // In production, restrict write to admins
+    }
+    
+    // Categories rules: Public read, Admin write
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if true; // In production, this should be restricted to admins
+    }
+
+    // Settings rules: Public read, Admin write
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Legal versions history: Public read, Admin write
+    match /legal_versions/{versionId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // User rules: Read/Write own data
+    match /users/{userId} {
+      allow read, write: if true;
+    }
+
+    // Email verification codes: Public write for generation
+    match /verification_codes/{email} {
+      allow read, write: if true;
+    }
+
+    // Default deny for other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // Predictions: Public read
+    match /predictions/{predictionId} {
+      allow read: if true;
+    }
+
+    // Result Types Master: Public read, Admin write
+    match /result_types/{typeId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Community Boards: Public read, Admin write
+    match /community_boards/{boardId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Community Posts: Public read, Admin write
+    match /community_posts/{postId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // AI Bots: Public read, Admin write
+    match /ai_bots/{botId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // AI Analysis: Public read, Admin write
+    match /ai_analysis/{gameId}/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
